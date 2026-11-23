@@ -15,7 +15,7 @@ function App() {
 
   return (
       <main style={{ maxWidth: 400, margin: '4rem auto', fontFamily: 'system-ui' }}>
-        <h1>AWS test app - V2</h1>
+        <h1>AWS test app - V4</h1>
         <form onSubmit={handleSubmit}>
           <label>
             Your name{' '}
