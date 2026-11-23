@@ -1,0 +1,45 @@
+name: Pipeline
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            web/package-lock.json
+            infra/package-lock.json
+
+      - name: Web – install
+        working-directory: web
+        run: npm ci
+      - name: Web – lint
+        working-directory: web
+        run: npm run lint
+      - name: Web – build
+        working-directory: web
+        run: npm run build
+
+      - name: Infra – install
+        working-directory: infra
+        run: npm ci
+      - name: Infra – typecheck
+        working-directory: infra
+        run: npm run build
+      - name: Infra – test
+        working-directory: infra
+        run: npm test
+      - name: Infra – synth
+        working-directory: infra
+        run: npx cdk synth
