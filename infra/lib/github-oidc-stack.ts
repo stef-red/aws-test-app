@@ -19,7 +19,7 @@ export class GithubOidcStack extends cdk.Stack {
                 StringEquals: {
                     'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
                     'token.actions.githubusercontent.com:sub':
-                        'repo:stef-red/aws-test-app:ref:refs/heads/main',
+                        'repo:stef-red@130202086/aws-test-app@1467267864:ref:refs/heads/main',
                 },
             }),
             maxSessionDuration: cdk.Duration.hours(1),
